@@ -5,4 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BackOfficeApi.Data\BackOfficeApi.Data.csproj" />
+  </ItemGroup>
+
 </Project>

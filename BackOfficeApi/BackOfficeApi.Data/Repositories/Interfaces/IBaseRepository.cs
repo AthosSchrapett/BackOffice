@@ -1,4 +1,4 @@
-﻿namespace BackOfficeApi.Data.Repositories.Interfaces
+﻿namespace BackOfficeApi.Data.Repositories
 {
     public interface IBaseRepository<T> where T : class
     {

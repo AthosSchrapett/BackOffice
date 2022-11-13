@@ -15,6 +15,9 @@ namespace BackOfficeApi.Data.Configuration
             builder.Property(x => x.Endereco).IsRequired().HasColumnType("varchar(300)");
             builder.Property(x => x.Cpf).IsRequired().HasColumnType("varchar(11)");
             builder.Property(x => x.Nickname).IsRequired().HasColumnType("varchar(50)");
+            builder.Property(x => x.CreatedAt).IsRequired();
+            builder.Property(x => x.UpdatedAt);
+            builder.Property(x => x.Qualification).IsRequired();
         }
     }
 }

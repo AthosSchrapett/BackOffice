@@ -1,15 +1,27 @@
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+using BackOfficeApi.Data;
+using BackOfficeApi.Data.Infra;
+using BackOfficeApi.Model.Entities.Person;
+using BackOfficeApi.Service;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
+builder.Services.AddScoped<IPersonService<LegalPerson>, LegalPersonService>();
+builder.Services.AddScoped<IPersonService<NaturalPerson>, NaturalPersonService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
+builder.Services.AddDbContext<BackOfficeContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("BackOfficeConnection")));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -18,6 +30,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

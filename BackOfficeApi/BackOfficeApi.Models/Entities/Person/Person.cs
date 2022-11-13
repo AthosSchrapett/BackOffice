@@ -7,5 +7,6 @@ namespace BackOfficeApi.Model.Entities.Person
         public PersonType Type { get; set; }
         public string Nome { get; set; }
         public string Endereco { get; set; }
+        public Qualification Qualification { get; set; }
     }
 }

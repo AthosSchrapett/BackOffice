@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BackOfficeApi.Model.Enums
 {
-    public enum PersonType
+    public enum Qualification
     {
-        Natural = 0,
-        Legal = 1
+        Cliente = 0,
+        Fornecedor = 1,
+        Colaborador = 3
     }
 }

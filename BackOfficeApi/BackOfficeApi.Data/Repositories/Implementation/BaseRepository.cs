@@ -1,7 +1,7 @@
-﻿using BackOfficeApi.Data.Repositories.Interfaces;
+﻿using BackOfficeApi.Model.Entities.Person;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackOfficeApi.Data.Repositories.Implementation
+namespace BackOfficeApi.Data.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
