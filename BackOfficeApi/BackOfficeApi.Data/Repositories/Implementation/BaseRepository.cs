@@ -6,7 +6,6 @@ namespace BackOfficeApi.Data.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly BackOfficeContext _backOfficeContext;
-
         public BaseRepository(BackOfficeContext backOfficeContext) => _backOfficeContext = backOfficeContext;
 
         public void Post(T entity) => _backOfficeContext.Set<T>().Add(entity);

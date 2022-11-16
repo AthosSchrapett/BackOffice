@@ -38,7 +38,7 @@ namespace BackOfficeApi.Service
 
         public void Delete(Guid id)
         {
-            _unityOfWork.NaturalPersonRepository.Delete(id);
+            _unityOfWork.DepartmentRepository.Delete(id);
             _unityOfWork.Commit();
         }
     }

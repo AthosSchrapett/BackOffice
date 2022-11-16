@@ -9,57 +9,68 @@ namespace BackOfficeApi.Controllers
     [ApiController]
     public class NaturalPersonController : ControllerBase
     {
-        private readonly IPersonService<NaturalPerson> _personService;
+        private readonly INaturalPersonService _naturalPersonService;
 
-        public NaturalPersonController(IPersonService<NaturalPerson> personService)
+        public NaturalPersonController(INaturalPersonService naturalPersonService)
         {
-            _personService = personService;
+            _naturalPersonService = naturalPersonService;
         }
 
         [HttpGet]
-        public ActionResult GetPaginationLegalPerson(int skip, int take)
+        public ActionResult GetPaginationNaturalPerson(int skip, int take)
         {
-            List<Person> persons = _personService.GetPagination(skip, take).ToList();
+            List<NaturalPerson> naturalPersons = _naturalPersonService.GetPagination(skip, take).ToList();
 
-            return Ok(persons);
+            return Ok(naturalPersons);
+        }
+
+        [HttpGet("GetAll")]
+        public ActionResult GetAll()
+        {
+            List<NaturalPerson> naturalPersons = _naturalPersonService.GetAll().ToList();
+
+            return Ok(naturalPersons);
         }
 
         [HttpGet("count")]
         public ActionResult GetCount()
         {
-            int countPerson = _personService.GetCount();
+            int countNatualPerson = _naturalPersonService.GetCount();
 
-            return Ok(new { totalPerson = countPerson });
+            return Ok(new { totalPerson = countNatualPerson });
         }
 
         [HttpGet("{id}")]
         public ActionResult GetById(Guid id)
         {
-            Person person = _personService.GetById(id);
+            Person person = _naturalPersonService.GetById(id);
 
             return Ok(person);
         }
 
         [HttpPost]
-        public ActionResult PostLegalPerson([FromBody] NaturalPerson legalPerson)
+        public ActionResult PostNaturalPerson([FromBody] NaturalPerson naturalPerson)
         {
-            _personService.Post(legalPerson);
+            if (_naturalPersonService.getPersonByDocumentOrName(naturalPerson.Cpf, naturalPerson.Nome))
+                return BadRequest("CPF ou Nome já cadastrado.");
 
-            return Ok(legalPerson);
+            _naturalPersonService.Post(naturalPerson);
+
+            return Ok(naturalPerson);
         }
 
         [HttpPut]
-        public ActionResult UpdateLegalPerson([FromBody] NaturalPerson legalPerson)
+        public ActionResult UpdateNaturalPerson([FromBody] NaturalPerson naturalPerson)
         {
-            _personService.Update(legalPerson);
+            _naturalPersonService.Update(naturalPerson);
 
-            return Ok(legalPerson);
+            return Ok(naturalPerson);
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
-            _personService.Delete(id);
+            _naturalPersonService.Delete(id);
 
             return Ok("Registro excluído com sucesso");
         }

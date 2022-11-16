@@ -1,0 +1,17 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ modalTitle }}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Dados salvos com sucesso!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="closePopup()">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

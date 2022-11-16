@@ -13,8 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnityOfWork, UnityOfWork>();
-builder.Services.AddScoped<IPersonService<LegalPerson>, LegalPersonService>();
-builder.Services.AddScoped<IPersonService<NaturalPerson>, NaturalPersonService>();
+builder.Services.AddScoped<ILegalPersonService, LegalPersonService>();
+builder.Services.AddScoped<INaturalPersonService, NaturalPersonService>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 builder.Services.AddDbContext<BackOfficeContext>(options =>
@@ -29,6 +29,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
 app.UseAuthentication();
 app.UseAuthorization();

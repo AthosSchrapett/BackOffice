@@ -1,0 +1,103 @@
+<div class="top-lista">
+  <h1>{{ telaDeCadastroOuEdicao }}</h1>
+  <hr>
+</div>
+
+<form [formGroup]="formNaturalPerson" (submit)="onSubmit()">
+
+  <div class="row mb-2">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Nome</label>
+        <input type="text" class="form-control" formControlName="nome" />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Apelido</label>
+        <input type="text" class="form-control" formControlName="nickname" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">CPF</label>
+        <input type="text" mask="000.000.000-00" class="form-control" formControlName="cpf" />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Tipo</label>
+        <select class="form-select" formControlName="type">
+          <option *ngFor="let tipo of tipos" [value]="tipo.value">{{ tipo.text }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">CEP</label>
+        <input type="text" mask="00.000-000" class="form-control" formControlName="cep"
+          (blur)="getEnderecoViaCep(this.formNaturalPerson.controls['cep'].value)" />
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="form-group">
+        <label for="">Endereço</label>
+        <input type="text" class="form-control" formControlName="address" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Bairro</label>
+        <input type="text" class="form-control" formControlName="bairro" />
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">Complemento</label>
+        <input type="text" class="form-control" formControlName="complement" />
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="form-group">
+        <label for="">Numero</label>
+        <input type="text" class="form-control" formControlName="number" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Cidade</label>
+        <input type="text" class="form-control" formControlName="cidade" />
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="form-group">
+        <label for="">UF</label>
+        <input type="text" class="form-control" formControlName="uf" />
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">Qualificação</label>
+        <select class="form-select" formControlName="qualification">
+          <option *ngFor="let qualificacao of qualificacoes" [value]="qualificacao.value">{{ qualificacao.text }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="formNaturalPerson.invalid" class="btn btn-primary">Submit</button>
+</form>
+
+<app-modal-confirmation [modalTitle]="modalTitle" [displayStyle]="displayStyle" [returnList]="'naturalPerson'"></app-modal-confirmation>
+

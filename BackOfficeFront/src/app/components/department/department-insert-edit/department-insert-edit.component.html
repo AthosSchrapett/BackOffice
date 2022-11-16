@@ -1,0 +1,28 @@
+<div class="top-lista">
+  <h1>{{ telaDeCadastroOuEdicao }}</h1>
+  <hr>
+</div>
+
+<form [formGroup]="formDepartment" (submit)="onSubmit()">
+
+  <div class="row mb-2">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Nome</label>
+        <input type="text" class="form-control" formControlName="nome" />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="">Colaborador</label>
+        <select class="form-select" formControlName="naturalPersonId">
+          <option *ngFor="let naturalPerson of naturalPersons" [value]="naturalPerson.id">{{ naturalPerson.nome }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="formDepartment.invalid" class="btn btn-primary">Submit</button>
+</form>
+
+<app-modal-confirmation [modalTitle]="modalTitle" [displayStyle]="displayStyle" [returnList]="'department'"></app-modal-confirmation>

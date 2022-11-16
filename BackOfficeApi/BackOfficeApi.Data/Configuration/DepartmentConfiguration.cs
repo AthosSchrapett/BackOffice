@@ -10,6 +10,8 @@ namespace BackOfficeApi.Data.Configuration
         {
             builder.ToTable("Departments");
 
+            builder.Property(x => x.Nome).IsRequired().HasColumnType("varchar(150)");
+
             builder.HasOne(e => e.NaturalPerson).WithMany(x => x.Departments).HasForeignKey(x => x.NaturalPersonId).IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
     }

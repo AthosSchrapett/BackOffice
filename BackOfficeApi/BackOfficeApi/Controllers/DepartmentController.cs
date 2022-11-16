@@ -20,6 +20,9 @@ namespace BackOfficeApi.Controllers
         {
             List<Department> departments = _departmentService.GetPagination(skip, take).ToList();
 
+            if(departments.Count() <= 0)
+                return NotFound("Nenhum registro encontrado");
+
             return Ok(departments);
         }
 
@@ -35,6 +38,9 @@ namespace BackOfficeApi.Controllers
         public ActionResult GetById(Guid id)
         {
             Department department = _departmentService.GetById(id);
+
+            if (department == null)
+                return NotFound("Nenhum registro encontrado");
 
             return Ok(department);
         }

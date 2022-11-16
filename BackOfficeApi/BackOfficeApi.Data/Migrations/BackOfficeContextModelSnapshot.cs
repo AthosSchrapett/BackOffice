@@ -34,6 +34,10 @@ namespace BackOfficeApi.Data.Migrations
                     b.Property<Guid>("NaturalPersonId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(150)");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -50,20 +54,37 @@ namespace BackOfficeApi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Bairro")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("Cnpj")
                         .IsRequired()
                         .HasColumnType("varchar(14)");
 
+                    b.Property<string>("Complement")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(150)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("Qualification")
                         .HasColumnType("int");
@@ -74,6 +95,9 @@ namespace BackOfficeApi.Data.Migrations
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
+
+                    b.Property<string>("Uf")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -89,16 +113,29 @@ namespace BackOfficeApi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Bairro")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Complement")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("varchar(11)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Nickname")
                         .IsRequired()
@@ -108,11 +145,18 @@ namespace BackOfficeApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
                     b.Property<int>("Qualification")
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
+
+                    b.Property<string>("Uf")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");

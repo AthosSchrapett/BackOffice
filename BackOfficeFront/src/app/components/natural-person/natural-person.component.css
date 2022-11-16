@@ -1,0 +1,52 @@
+.natural-person {
+  margin: 20px 3% 10px 3%;
+}
+
+.top-lista {
+  text-align: end;
+}
+
+.button-new {
+  width: 10rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 5px;
+  background: rgb(0, 180, 0);
+  color: rgb(255, 255, 255);
+}
+
+.button-new:hover {
+  background: rgb(11, 36, 104);
+}
+
+.button-action {
+  margin-right: 5px;
+  width: 35px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  color: rgb(58, 58, 58);
+}
+
+.button-action:hover {
+  background: rgb(11, 36, 104);
+  color: #fff;
+}
+
+.edit-button {
+  background: rgb(104, 104, 255);
+}
+
+.delete-button {
+  background: rgb(255, 113, 113);
+}
+
+@media (max-width: 700px) {
+  .legal-person {
+    width: 80%;
+  }
+
+  .button-action {
+    margin-top: 2px;
+  }
+}

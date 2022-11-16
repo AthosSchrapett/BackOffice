@@ -9,41 +9,44 @@ namespace BackOfficeApi.Controllers
     [ApiController]
     public class LegalPersonController : ControllerBase
     {
-        private readonly IPersonService<LegalPerson> _personService;
+        private readonly ILegalPersonService _legalPersonService;
 
-        public LegalPersonController(IPersonService<LegalPerson> personService)
+        public LegalPersonController(ILegalPersonService legalPersonService)
         {
-            _personService = personService;
+            _legalPersonService = legalPersonService;
         }
 
         [HttpGet]
         public ActionResult GetPaginationLegalPerson(int skip, int take)
         {
-            List<Person> persons = _personService.GetPagination(skip, take).ToList();
+            List<LegalPerson> legalPersons = _legalPersonService.GetPagination(skip, take).ToList();
 
-            return Ok(persons);
+            return Ok(legalPersons);
         }
 
         [HttpGet("count")]
         public ActionResult GetCount()
         {
-            int countPerson = _personService.GetCount();
+            int countLegalPerson = _legalPersonService.GetCount();
 
-            return Ok(new { totalPerson = countPerson });
+            return Ok(new { totalLegalPerson = countLegalPerson });
         }
 
         [HttpGet("{id}")]
         public ActionResult GetById(Guid id)
         {
-            Person person = _personService.GetById(id);
+            LegalPerson legalPerson = _legalPersonService.GetById(id);
 
-            return Ok(person);
+            return Ok(legalPerson);
         }
 
         [HttpPost]
         public ActionResult PostLegalPerson([FromBody]LegalPerson legalPerson)
         {
-            _personService.Post(legalPerson);
+            if (_legalPersonService.getPersonByDocumentOrName(legalPerson.Cnpj, legalPerson.Nome))
+                return BadRequest("CNPJ ou Nome já cadastrado.");
+
+            _legalPersonService.Post(legalPerson);
 
             return Ok(legalPerson);
         }
@@ -51,7 +54,7 @@ namespace BackOfficeApi.Controllers
         [HttpPut]
         public ActionResult UpdateLegalPerson([FromBody] LegalPerson legalPerson)
         {
-            _personService.Update(legalPerson);
+            _legalPersonService.Update(legalPerson);
 
             return Ok(legalPerson);
         }
@@ -59,7 +62,7 @@ namespace BackOfficeApi.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
-            _personService.Delete(id);
+            _legalPersonService.Delete(id);
 
             return Ok("Registro excluído com sucesso");
         }

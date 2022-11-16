@@ -1,0 +1,36 @@
+
+<div class="legal-person">
+  <div class="top-lista">
+    <button type="button" (click)="goToInsert()" class="button-new"><i class="bi bi-building-fill"></i> Nova Empresa</button>
+    <hr>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome Fantasia</th>
+        <th scope="col">CNPJ</th>
+        <th scope="col">Qualificação</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let legalPerson of legalPersons | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual, totalItems: totalLegalPersons }; let i = index">
+        <th scope="row">{{ i }}</th>
+        <td>{{ legalPerson.tradeName }}</td>
+        <td>{{ legalPerson.cnpj | mask: '00.000.000/0000-00' }}</td>
+        <td>{{ mostraQualificacao(legalPerson.qualification) }}</td>
+        <td>
+          <button type="button" (click)="goToEdit(legalPerson.id)" class="button-action edit-button"><i class="bi bi-pencil-fill"></i></button>
+          <button type="button" (click)="abreModalDelete(legalPerson.id)" class="button-action delete-button"><i class="bi bi-trash-fill"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls class="pagination justify-content-end pt-3"
+  (pageChange)="pageChangeEvent($event)" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+
+</div>
+
+<app-modal-exclusion [displayStyle]="displayStyle" [modalTitle]="'ConfirmaExclusão?'" (deleteRequest)="DeleteLegalPerson()"></app-modal-exclusion>
